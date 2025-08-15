@@ -665,33 +665,67 @@
                             </div>
                             <div class="form-group">
                                 <label for="location">出生地點</label>
-                                <input type="text" id="location" name="location" placeholder="例：台北市">
+                                <select id="location" name="location">
+                                    <option value="">請選擇</option>
+                                    <option value="台北市">台北市</option>
+                                    <option value="新北市">新北市</option>
+                                    <option value="桃園市">桃園市</option>
+                                    <option value="台中市">台中市</option>
+                                    <option value="台南市">台南市</option>
+                                    <option value="高雄市">高雄市</option>
+                                    <option value="基隆市">基隆市</option>
+                                    <option value="新竹市">新竹市</option>
+                                    <option value="嘉義市">嘉義市</option>
+                                    <option value="其他">其他</option>
+                                </select>
                             </div>
                         </div>
                         
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="year">出生年</label>
-                                <input type="number" id="year" name="year" min="1900" max="2100" placeholder="例：1985">
+                                <select id="year" name="year">
+                                    <option value="">請選擇</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="month">出生月</label>
-                                <input type="number" id="month" name="month" min="1" max="12" placeholder="例：10">
+                                <select id="month" name="month">
+                                    <option value="">請選擇</option>
+                                    <option value="1">1月</option>
+                                    <option value="2">2月</option>
+                                    <option value="3">3月</option>
+                                    <option value="4">4月</option>
+                                    <option value="5">5月</option>
+                                    <option value="6">6月</option>
+                                    <option value="7">7月</option>
+                                    <option value="8">8月</option>
+                                    <option value="9">9月</option>
+                                    <option value="10">10月</option>
+                                    <option value="11">11月</option>
+                                    <option value="12">12月</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="day">出生日</label>
-                                <input type="number" id="day" name="day" min="1" max="31" placeholder="例：6">
+                                <select id="day" name="day">
+                                    <option value="">請選擇</option>
+                                </select>
                             </div>
                         </div>
                         
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="hour">出生時</label>
-                                <input type="number" id="hour" name="hour" min="0" max="23" placeholder="例：19">
+                                <select id="hour" name="hour">
+                                    <option value="">請選擇</option>
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="minute">出生分</label>
-                                <input type="number" id="minute" name="minute" min="0" max="59" placeholder="例：30">
+                                <select id="minute" name="minute">
+                                    <option value="">請選擇</option>
+                                </select>
                             </div>
                         </div>
                         
@@ -766,8 +800,48 @@
         // 初始化應用程式
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🌈 開始初始化虹靈御所系統...');
+            initializeDropdowns();
             initializeApp();
         });
+
+        // 初始化下拉選單
+        function initializeDropdowns() {
+            // 生成年份選項 (1900-2030)
+            const yearSelect = document.getElementById('year');
+            for (let year = 2030; year >= 1900; year--) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year + '年';
+                yearSelect.appendChild(option);
+            }
+
+            // 生成日期選項 (1-31)
+            const daySelect = document.getElementById('day');
+            for (let day = 1; day <= 31; day++) {
+                const option = document.createElement('option');
+                option.value = day;
+                option.textContent = day + '日';
+                daySelect.appendChild(option);
+            }
+
+            // 生成時間選項 (0-23)
+            const hourSelect = document.getElementById('hour');
+            for (let hour = 0; hour <= 23; hour++) {
+                const option = document.createElement('option');
+                option.value = hour;
+                option.textContent = hour.toString().padStart(2, '0') + '時';
+                hourSelect.appendChild(option);
+            }
+
+            // 生成分鐘選項 (0-59)
+            const minuteSelect = document.getElementById('minute');
+            for (let minute = 0; minute <= 59; minute++) {
+                const option = document.createElement('option');
+                option.value = minute;
+                option.textContent = minute.toString().padStart(2, '0') + '分';
+                minuteSelect.appendChild(option);
+            }
+        }
 
         function initializeApp() {
             try {
